@@ -10,17 +10,18 @@ const Login = () => {
   const [error, setError] = useState(null);
   const navigate = useNavigate();
   const handleLogin = async (e) => {
-    e.preventDefault()
-    if(!validateEmail(email)){
+    e.preventDefault();
+    if (!validateEmail(email)) {
       setError("Something seems wrong with your email address");
       return;
     }
-    if(!password){
-      setError("Are you sure you entered your password?");
+    if (!password) {
+      setError("Are you sure you entered your right password?");
       return;
     }
     setError("");
 
+    
   };
   return (
     <AuthLayout>
