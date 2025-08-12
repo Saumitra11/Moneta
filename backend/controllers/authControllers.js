@@ -78,12 +78,23 @@ exports.getUserProfile = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
     res.status(200).json(user);
-    
   } catch (error) {
     return res.status(500).json({
       message:
         "Server error while fetching user profile, please try again later",
-        error: error.message,
+      error: error.message,
     });
   }
+};
+
+exports.uploadImage = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: "No file uploaded" });
+  }
+  const profileImageUrl = `${req.protocol}://${req.get("host")}/uploads/${
+    req.file.filename
+  }`;
+  res
+    .status(200)
+    .json({ message: "Image uploaded successfully", profileImageUrl });
 };
