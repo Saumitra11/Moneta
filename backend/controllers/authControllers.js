@@ -44,7 +44,7 @@ exports.registerUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   const { email, password } = req.body || {};
-  console.log(req.body);
+  // console.log(req.body);
   if (!email || !password) {
     return res.status(400).json({ message: "Please enter all details" });
   }
@@ -73,6 +73,8 @@ exports.loginUser = async (req, res) => {
 
 exports.getUserProfile = async (req, res) => {
   try {
+    console.log("Fetching user profile in controller");
+    console.log(req.headers);
     const user = await User.findById(req.user.id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
