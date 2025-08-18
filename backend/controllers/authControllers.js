@@ -73,8 +73,8 @@ exports.loginUser = async (req, res) => {
 
 exports.getUserProfile = async (req, res) => {
   try {
-    console.log("Fetching user profile in controller");
-    console.log(req.headers);
+    // console.log("Fetching user profile in controller");
+    // console.log(req.headers);
     const user = await User.findById(req.user.id).select("-password");
     if (!user) {
       return res.status(404).json({ message: "User not found" });
