@@ -2,7 +2,6 @@ const User = require("../models/User");
 const Income = require("../models/Income");
 const xlsx = require("xlsx");
 
-
 exports.addIncome = async (req, res) => {
   const userId = req.user.id;
   const { icon, source, amount, date } = req.body || {};
@@ -90,6 +89,9 @@ exports.downloadIncomeReport = async (req, res) => {
     xlsx.utils.book_append_sheet(wb, ws, "Income Report");
     xlsx.writeFile(wb, "Income_Report.xlsx");
     res.download("Income_Report.xlsx");
+    return res.status(200).json({
+      message: "Income report downloaded successfully",
+    });
   } catch (error) {
     return res.status(500).json({
       message:
