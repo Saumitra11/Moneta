@@ -17,7 +17,7 @@ exports.addExpense = async (req, res) => {
       amount,
       date: new Date(date),
     });
-    res.status(200).json({
+    res.status(201).json({
       message: "Expense added successfully",
       expense: newExpense,
     });

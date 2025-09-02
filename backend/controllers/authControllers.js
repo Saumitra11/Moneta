@@ -18,7 +18,7 @@ exports.registerUser = async (req, res) => {
     // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(409).json({ message: "User already exists" });
     }
 
     // Create new user
@@ -52,11 +52,11 @@ exports.loginUser = async (req, res) => {
     // Check if user exists and compare password
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ message: "User doesn't exist" });
+      return res.status(404).json({ message: "User doesn't exist" });
     }
     const isMatch = await user.comparePassword(password);
     if (!isMatch) {
-      return res.status(400).json({ message: "Password is incorrect" });
+      return res.status(401).json({ message: "Password is incorrect" });
     }
     res.status(200).json({
       id: user._id,

@@ -18,7 +18,7 @@ exports.addIncome = async (req, res) => {
       amount,
       date: new Date(date),
     });
-    res.status(200).json({
+    res.status(201).json({
       message: "Income added successfully",
       income: newIncome,
     });
